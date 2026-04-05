@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Home Page Premium</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    
+    <main class="container">
+        <section class="content-grid">
+            <!-- Coluna da Esquerda (Busca + Atalhos) -->
+            <div class="left-column">
+                <!-- Busca -->
+                <header class="search-section">
+                    <div class="search-bar glass">
+                        <i class="ph ph-magnifying-glass"></i>
+                        <input type="text" id="searchInput" placeholder="Pesquisar no Google..." autocomplete="off">
+                        <button id="searchBtn">Pesquisar</button>
+                    </div>
+                </header>
+
+                <!-- Atalhos -->
+                <div class="shortcuts-container glass">
+                    <h2 class="section-title">Atalhos Rápidos</h2>
+                    <div id="shortcutsGrid" class="shortcuts-grid">
+                        <!-- Gerado via JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna da Direita (Agenda) -->
+            <aside class="agenda-container glass">
+                <h2 class="section-title">Minha Agenda</h2>
+                <div class="calendar-wrapper">
+                    <!-- Placeholder da Agenda -->
+                    <iframe src="https://calendar.google.com/calendar/embed?src=pt.brazilian%23holiday%40group.v.calendar.google.com&ctz=America%2FSao_Paulo" 
+                            style="border: 0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+                </div>
+            </aside>
+        </section>
+    </main>
+
+    <!-- Modal de Edição -->
+    <div id="editModal" class="modal glass">
+        <div class="modal-content">
+            <h3>Editar Atalho</h3>
+            <input type="text" id="shortcutTitle" placeholder="Nome do Site">
+            <input type="text" id="shortcutUrl" placeholder="https://exemplo.com">
+            <div class="modal-actions">
+                <button id="saveShortcut" class="btn-primary">Salvar</button>
+                <button id="closeModal" class="btn-secondary">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

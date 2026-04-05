@@ -1,0 +1,226 @@
+:root {
+    --bg-color: #f3e5f5; /* Violeta bem suave */
+    --accent-color: #7e57c2; /* Violeta principal */
+    --accent-hover: #5e35b1;
+    --text-color: #311b92;
+    --glass-bg: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.3);
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --border-radius: 20px;
+    --blur-amount: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #e1bee7 0%, #b39ddb 100%);
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.container {
+    padding: 2rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(var(--blur-amount));
+    -webkit-backdrop-filter: blur(var(--blur-amount));
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    box-shadow: 0 8px 32px 0 var(--shadow-color);
+}
+
+/* Busca */
+.search-section {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    width: 100%;
+}
+
+.search-bar i {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-right: 1rem;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    flex: 1;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.search-bar button {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.search-bar button:hover {
+    background: var(--accent-hover);
+}
+
+/* Grid Layout */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 450px;
+    gap: 2rem;
+    flex: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.shortcuts-container, .agenda-container {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    padding-left: 0.5rem;
+}
+
+.shortcuts-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1rem; /* Reduzido de 1.5rem para 1rem */
+    flex: 1;
+}
+
+.shortcut-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 0.8rem; /* Reduzido de 1rem para 0.8rem */
+    cursor: pointer;
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-decoration: none;
+    aspect-ratio: 1 / 1; /* Garante que sejam quadrados */
+}
+
+.shortcut-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.shortcut-icon {
+    font-size: 2rem; /* Reduzido de 2.5rem para 2rem */
+    color: var(--accent-color);
+    margin-bottom: 0.4rem;
+}
+
+.shortcut-name {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.edit-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background: transparent;
+    border: none;
+    color: var(--accent-color);
+    opacity: 0;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.shortcut-item:hover .edit-btn {
+    opacity: 1;
+}
+
+/* Agenda */
+.calendar-wrapper {
+    flex: 1;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.modal h3 { margin-bottom: 1rem; color: var(--text-color); }
+
+.modal input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-primary { 
+    background: var(--accent-color); color: white; border: none; padding: 0.8rem; border-radius: 10px; flex: 1; cursor: pointer;
+}
+.btn-secondary { 
+    background: #e0e0e0; color: #333; border: none; padding: 0.8rem; border-radius: 10px; flex: 1; cursor: pointer;
+}
