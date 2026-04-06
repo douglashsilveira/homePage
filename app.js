@@ -18,13 +18,18 @@ function renderShortcuts() {
         div.className = 'shortcut-item';
         
         if (item) {
-            // Busca o favicon do domínio em 64x64
-            const faviconUrl = `https://www.google.com/s2/favicons?sz=64&domain=${item.url}`;
+            // Lógica melhorada de Favicon: Google S2 com fallback para favicon.ico direto
+            const domain = new URL(item.url).hostname;
+            const faviconUrl = `https://www.google.com/s2/favicons?sz=128&domain=${domain}`;
             
+            // Limita o nome para evitar quebra de layout
+            const displayTitle = item.title.length > 12 ? item.title.substring(0, 10) + '..' : item.title;
+
             div.innerHTML = `
                 <a href="${item.url}" target="_blank" class="shortcut-link">
-                    <img src="${faviconUrl}" class="shortcut-icon" alt="${item.title}" onerror="this.src='https://unpkg.com/@phosphor-icons/core@2.0.3/assets/ph/globe.svg'">
-                    <span class="shortcut-name">${item.title}</span>
+                    <img src="${faviconUrl}" class="shortcut-icon" alt="${item.title}" 
+                         onerror="this.onerror=null; this.src='https://www.google.com/s2/favicons?sz=128&domain=${item.url}'">
+                    <span class="shortcut-name">${displayTitle}</span>
                 </a>
                 <button class="edit-btn" onclick="openEditModal(event, ${index})">
                     <i class="ph ph-pencil-simple"></i>
